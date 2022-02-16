@@ -27,7 +27,7 @@ if [[ "${OPERATION}" == "validate" || "${OPERATION}" == "" ]]; then
     for dir in $(echo "${FILES}" | xargs -n1 dirname | sort -u | uniq); do
     echo "--> Running 'packer validate -syntac-only' in directory 'repository/${dir}'"
     pushd "repository/${dir}" >/dev/null
-    packer validate -syntax-only . || exit $?
+    terraform validate . || exit $?
     popd >/dev/null
     done
     # exit ${VALIDATE_ERROR}
