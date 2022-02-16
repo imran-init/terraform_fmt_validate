@@ -17,7 +17,7 @@ if [[ "${OPERATION}" == "fmt" || "${OPERATION}" == "" ]]; then
     for dir in $(echo "${DIRS}" | sort -u | uniq); do
     echo "--> Running 'terraform fmt -check -diff -recursive' in directory 'repository/${dir}'"
     pushd "repository/${dir}" >/dev/null
-    terraform fmt -check -diff -recursive . || exit $?
+    terraform fmt -check -diff || exit $?
     popd >/dev/null
     done
     # exit ${FMT_ERROR}
