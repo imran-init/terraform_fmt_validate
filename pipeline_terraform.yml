@@ -22,6 +22,7 @@ jobs:
       # valid values: (fmt|validate|''), the default empty value will build both types.
       OPERATION: "validate"
       DIRS: "aws"
+      TF_LOG: "DEBUG"
       # FILES: "hcl2/ubuntu/variables.pkr.hcl"
     file: cicd/fmt_validate_task.yml
     # config:
