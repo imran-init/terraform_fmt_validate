@@ -9,7 +9,7 @@ resources:
 - name: cicd
   source:
     branch: main
-    uri: https://github.com/imran-init/packer-sample-config.git
+    uri: https://github.com/imran-init/terraform_fmt_validate.git
   type: git
 jobs:
 - name: unit-test
