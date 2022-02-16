@@ -11,6 +11,6 @@ inputs:
 
 params:
   OPERATION: ""
-  FILES: ""
+  DIRS: ""
 run:
     path: ./cicd/terraform_fmt_validate.sh

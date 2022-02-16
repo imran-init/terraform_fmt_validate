@@ -1,11 +1,11 @@
 resources:
-# - name: repository
-#   source:
-#     branch: main
-#     uri: https://github.com/imran-init/packer-sample-config.git
+- name: repository
+  source:
+    branch: master
+    uri: https://github.com/futurice/terraform-examples.git
+  type: git
 #     # branch: master
 #     # uri: https://github.com/JamesWoolfenden/packer-by-example.git
-#   type: git
 - name: cicd
   source:
     branch: main
@@ -15,13 +15,13 @@ jobs:
 - name: unit-test
   plan:
   - get: cicd
-  # - get: repository
-  - task: packer-validate
-    input_mapping: { repository: cicd }
+  - get: repository
+  - task: terraform-fmt-validate
+    # input_mapping: { repository: cicd }
     params:
       # valid values: (fmt|validate|''), the default empty value will build both types.
-      OPERATION: "validate"
-      FILES: "subfolder/sample-config.pkr.hcl"
+      OPERATION: "fmt"
+      DIRS: "aws"
       # FILES: "hcl2/ubuntu/variables.pkr.hcl"
     file: cicd/fmt_validate_task.yml
     # config:

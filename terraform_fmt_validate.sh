@@ -5,7 +5,7 @@ set -e
 set -o pipefail
 
 echo "Echoing ENV Vars."
-echo "FILES: ${FILES}"
+echo "DIRS: ${DIRS}"
 echo "OPERATION: ${OPERATION}"
 
 if ! { [[ "${OPERATION}" == "fmt" || "${OPERATION}" == "validate" || "${OPERATION}" == "" ]]; }; then
@@ -14,10 +14,10 @@ if ! { [[ "${OPERATION}" == "fmt" || "${OPERATION}" == "validate" || "${OPERATIO
 fi
 
 if [[ "${OPERATION}" == "fmt" || "${OPERATION}" == "" ]]; then
-    for dir in $(echo "${FILES}" | xargs -n1 dirname | sort -u | uniq); do
-    echo "--> Running 'packer fmt -check -recursive' in directory 'repository/${dir}'"
+    for dir in $(echo "${DIRS}" | sort -u | uniq); do
+    echo "--> Running 'terraform fmt -check -diff -recursive' in directory 'repository/${dir}'"
     pushd "repository/${dir}" >/dev/null
-    packer fmt -check -recursive . || exit $?
+    terraform fmt -check -diff -recursive . || exit $?
     popd >/dev/null
     done
     # exit ${FMT_ERROR}
