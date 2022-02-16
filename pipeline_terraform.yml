@@ -1,0 +1,44 @@
+resources:
+# - name: repository
+#   source:
+#     branch: main
+#     uri: https://github.com/imran-init/packer-sample-config.git
+#     # branch: master
+#     # uri: https://github.com/JamesWoolfenden/packer-by-example.git
+#   type: git
+- name: cicd
+  source:
+    branch: main
+    uri: https://github.com/imran-init/packer-sample-config.git
+  type: git
+jobs:
+- name: unit-test
+  plan:
+  - get: cicd
+  # - get: repository
+  - task: packer-validate
+    input_mapping: { repository: cicd }
+    params:
+      # valid values: (fmt|validate|''), the default empty value will build both types.
+      OPERATION: "validate"
+      FILES: "subfolder/sample-config.pkr.hcl"
+      # FILES: "hcl2/ubuntu/variables.pkr.hcl"
+    file: cicd/fmt_validate_task.yml
+    # config:
+    #   platform: linux
+    #   image_resource:
+    #     name: ""
+    #     source:
+    #       repository: hashicorp/packer
+    #       tag: latest
+    #     type: docker-image
+    #   inputs:
+    #   - name: cicd
+    #   - name: repository
+    #   # params:
+    #   #   ACTION: ""
+    #   #   FILES: ""
+    #   run:
+    #     args:
+    #     - repository
+    #     path: ./cicd/packer_validate.sh

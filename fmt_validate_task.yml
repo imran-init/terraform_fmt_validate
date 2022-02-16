@@ -1,0 +1,16 @@
+platform: linux
+image_resource:
+    name: ""
+    source:
+        repository: hashicorp/terraform
+        tag: latest
+    type: docker-image
+inputs:
+- name: cicd
+- name: repository
+
+params:
+  OPERATION: ""
+  FILES: ""
+run:
+    path: ./cicd/terraform_fmt_validate.sh
