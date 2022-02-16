@@ -20,7 +20,7 @@ jobs:
     # input_mapping: { repository: cicd }
     params:
       # valid values: (fmt|validate|''), the default empty value will build both types.
-      OPERATION: "fmt"
+      OPERATION: "validate"
       DIRS: "aws"
       # FILES: "hcl2/ubuntu/variables.pkr.hcl"
     file: cicd/fmt_validate_task.yml

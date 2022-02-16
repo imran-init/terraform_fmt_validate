@@ -24,8 +24,8 @@ if [[ "${OPERATION}" == "fmt" || "${OPERATION}" == "" ]]; then
 fi
 
 if [[ "${OPERATION}" == "validate" || "${OPERATION}" == "" ]]; then
-    for dir in $(echo "${FILES}" | xargs -n1 dirname | sort -u | uniq); do
-    echo "--> Running 'packer validate -syntac-only' in directory 'repository/${dir}'"
+    for dir in $(echo "${FILES}" | sort -u | uniq); do
+    echo "--> Running 'terraform validate' in directory 'repository/${dir}'"
     pushd "repository/${dir}" >/dev/null
     terraform validate . || exit $?
     popd >/dev/null
