@@ -2,8 +2,8 @@ platform: linux
 image_resource:
     name: ""
     source:
-        repository: alpine/bundle-terraform-awspec
-        tag: latest
+        repository: localhost:5000/terraform
+        # tag: latest
     type: docker-image
 inputs:
 - name: cicd
