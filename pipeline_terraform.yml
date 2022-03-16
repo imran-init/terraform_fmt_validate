@@ -1,11 +1,12 @@
 resources:
 - name: repository
   source:
-    branch: master
-    uri: https://github.com/futurice/terraform-examples.git
+    # branch: master
+    # uri: https://github.com/futurice/terraform-examples.git
   type: git
-#     # branch: master
-#     # uri: https://github.com/JamesWoolfenden/packer-by-example.git
+  source:
+    branch: master
+    uri: https://github.com/JamesWoolfenden/packer-by-example.git
 - name: cicd
   source:
     branch: main
