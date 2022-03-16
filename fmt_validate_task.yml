@@ -2,7 +2,7 @@ platform: linux
 image_resource:
     name: ""
     source:
-        repository: thazelart/terraform-validator
+        repository: "wpengine/terraform"
         # tag: latest
     type: docker-image
 inputs:
@@ -14,5 +14,3 @@ params:
   DIRS: ""
 run:
     path: ./cicd/terraform_fmt_validate.sh
-
-    fly -t ps unpause-pipeline -p terraform-fmt-validate
