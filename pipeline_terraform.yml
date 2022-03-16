@@ -1,12 +1,12 @@
 resources:
-- name: repository
-  source:
-    # branch: master
-    # uri: https://github.com/futurice/terraform-examples.git
-  type: git
-  source:
-    branch: master
-    uri: https://github.com/JamesWoolfenden/packer-by-example.git
+# - name: repository
+#   type: git
+#   source:
+#     branch: master
+#     uri: https://github.com/futurice/terraform-examples.git
+  # source:
+  #   branch: main
+  #   uri: https://github.com/JamesWoolfenden/packer-by-example.git
 - name: cicd
   source:
     branch: main
@@ -16,9 +16,9 @@ jobs:
 - name: unit-test
   plan:
   - get: cicd
-  - get: repository
+  # - get: repository
   - task: terraform-fmt-validate
-    # input_mapping: { repository: cicd }
+    input_mapping: { repository: cicd }
     params:
       # valid values: (fmt|validate|''), the default empty value will build both types.
       OPERATION: "validate"

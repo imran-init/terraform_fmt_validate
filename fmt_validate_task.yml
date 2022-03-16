@@ -2,7 +2,7 @@ platform: linux
 image_resource:
     name: ""
     source:
-        repository: 172.17.0.2:5000/terraform
+        repository: thazelart/terraform-validator
         # tag: latest
     type: docker-image
 inputs:
@@ -14,3 +14,5 @@ params:
   DIRS: ""
 run:
     path: ./cicd/terraform_fmt_validate.sh
+
+    fly -t ps unpause-pipeline -p terraform-fmt-validate
